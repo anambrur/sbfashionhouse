@@ -1,0 +1,54 @@
+[23-Dec-2019 01:45:25 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 167
+[23-Dec-2019 01:45:25 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 169
+[23-Dec-2019 07:45:25 Asia/Dhaka] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php:752
+Stack trace:
+#0 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(752): ReflectionClass->__construct('view')
+#1 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('view')
+#2 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(586): Illuminate\Container\Container->resolve('view', Array)
+#3 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(732): Illuminate\Container\Container->make('view', Array)
+#4 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/I in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 752
+[23-Dec-2019 02:57:24 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 167
+[23-Dec-2019 02:57:24 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 169
+[23-Dec-2019 08:57:24 Asia/Dhaka] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php:752
+Stack trace:
+#0 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(752): ReflectionClass->__construct('view')
+#1 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('view')
+#2 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(586): Illuminate\Container\Container->resolve('view', Array)
+#3 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(732): Illuminate\Container\Container->make('view', Array)
+#4 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/I in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 752
+[23-Dec-2019 05:36:03 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 167
+[23-Dec-2019 05:36:03 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 169
+[23-Dec-2019 11:36:03 Asia/Dhaka] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php:752
+Stack trace:
+#0 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(752): ReflectionClass->__construct('view')
+#1 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('view')
+#2 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(586): Illuminate\Container\Container->resolve('view', Array)
+#3 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(732): Illuminate\Container\Container->make('view', Array)
+#4 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/I in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 752
+[23-Dec-2019 07:13:10 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 167
+[23-Dec-2019 07:13:10 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 169
+[23-Dec-2019 13:13:10 Asia/Dhaka] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php:752
+Stack trace:
+#0 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(752): ReflectionClass->__construct('view')
+#1 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('view')
+#2 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(586): Illuminate\Container\Container->resolve('view', Array)
+#3 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(732): Illuminate\Container\Container->make('view', Array)
+#4 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/I in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 752
+[23-Dec-2019 08:11:42 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 167
+[23-Dec-2019 08:11:42 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 169
+[23-Dec-2019 14:11:42 Asia/Dhaka] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php:752
+Stack trace:
+#0 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(752): ReflectionClass->__construct('view')
+#1 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('view')
+#2 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(586): Illuminate\Container\Container->resolve('view', Array)
+#3 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(732): Illuminate\Container\Container->make('view', Array)
+#4 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/I in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 752
+[23-Dec-2019 08:14:04 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 167
+[23-Dec-2019 08:14:04 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home/kzinternational/public_html/kz-international.com/emall/vendor/vlucas/phpdotenv/src/Loader.php on line 169
+[23-Dec-2019 14:14:04 Asia/Dhaka] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php:752
+Stack trace:
+#0 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(752): ReflectionClass->__construct('view')
+#1 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('view')
+#2 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php(586): Illuminate\Container\Container->resolve('view', Array)
+#3 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(732): Illuminate\Container\Container->make('view', Array)
+#4 /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/I in /home/kzinternational/public_html/kz-international.com/emall/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 752

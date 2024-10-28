@@ -1,0 +1,12 @@
+{
+    "name": "mrksohag/timezones",
+    "description": "This is my first package. It use for timezones",
+    "authors": [
+        {
+            "name": "Engr. Mizanur Rahman Khan",
+            "email": "engr.mrksohag@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

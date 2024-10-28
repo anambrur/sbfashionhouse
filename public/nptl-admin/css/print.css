@@ -1,0 +1,127 @@
+@page { margin: 30px 50px 90px 50px; }
+
+#footer { 
+   position: fixed; 
+   left: 0px; 
+   bottom: -50px; 
+   right: 0px; 
+   height: 50px; 
+}
+.logo {
+   width: 165px;
+   height: auto;
+}
+#footer .page:after { content: counter(page, upper-roman); }
+table{
+   margin-bottom: 20px; max-width: 100%; width: 100%; border: 1px solid #000;
+   border-collapse: collapse;
+   position: relative;
+}
+.border_none{
+   border:  none;
+}
+table tr td{
+   padding:0 5px;
+   font-size: 13px;
+   vertical-align: top;
+}
+.table tr td{
+   vertical-align: middle!important;
+}
+table thead tr th {
+   font-size: 9px;
+}
+.totalRight td{
+   text-align: right;
+}
+.text-right{
+   text-align: right;
+   padding: 5px;
+}
+.text-center{
+   text-align: center;
+}
+.no-print{
+   display: none;
+}
+.print{
+   display: table-row;
+}
+.clearfix{
+   clear: both;
+}
+.well {
+   background: #fbfbfb none repeat scroll 0 0;
+   border: 1px solid #ddd;
+   box-shadow: 0 1px 1px #ececec;
+   position: relative;
+   -webkit-print-color-adjust:exact;
+}
+.wel_sc{
+   clear: both;
+   float: right;
+   margin-bottom: 15px;
+   width: 320px;
+}
+
+.well-sm {
+   border-radius: 2px;
+   padding: 9px;
+}
+.customer_name {
+   font-weight: 600 !important;
+   margin-bottom: 5px;
+}
+.no-border, .well.no-border[class*=" bg-"] {
+   border-width: 0 !important;
+}
+.order_dp {
+   line-height: 25px;
+}
+.well[class*=" bg-"], .well[class^="bg-"] {
+   border: 1px solid #555 !important;
+}
+.widget-body .well {
+   margin-bottom: 0;
+}
+.bg-color-darken {
+   background-color: #404040 !important;
+}
+.txt-color-white {
+   color: #fff !important;
+}
+[class*=" bg-"], [class^="bg-"] {
+   filter: none !important;
+}
+.no-border, .well.no-border[class*=" bg-"] {
+   border-width: 0 !important;
+}
+.inv_title{
+   margin-top: 0;
+   font-size: 40px;
+}
+.order_table {
+   vertical-align: middle;
+}
+.order_table thead tr th{
+   background: #F5F5F5!important;
+   border-bottom: 2px solid #DDDDDD;
+   -webkit-print-color-adjust:exact;
+}
+.order_table tr td{
+   border-bottom: 1px solid #DDDDDD;
+}
+body{
+  -webkit-print-color-adjust:exact;
+}
+@media print{
+   body{
+      -webkit-print-color-adjust:exact;
+   }
+   .well {
+      width: 210px;
+      word-break:break-all;
+      float: right;
+      margin-bottom: 10px;
+   }
+}

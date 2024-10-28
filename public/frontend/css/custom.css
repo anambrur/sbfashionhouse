@@ -1,0 +1,109 @@
+.container {
+    /*width: 1300px;*/
+}
+.header{
+    background: #fff;
+}
+.ads-style{
+    width: 100%;
+}
+.video-panel{
+    margin-top: 29px;
+}
+.image-style{
+    width: 100%;
+}
+.m-log {
+    margin-bottom: 15px;
+    border-radius: 0;
+    height: 35px;
+    font-size: 15px;
+}
+.panel-style h3 {
+    font-weight: bold;
+    font-size: 20px;
+    color: #2259ad;
+}
+.m-label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    margin-top: 0px;
+}
+.m-label span{
+    color: red;
+}
+.panel-style{
+    padding: 30px;
+}
+.close-style-ex {
+    background: black !important;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 14px;
+}
+.close-style-ex:hover{
+    background:red !important;
+}
+.button-style {
+    border-radius: 0px;
+    background: #aad6a9;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.login-socail-form {
+    margin: 0px 0 0px!important;
+}
+.login-socail-form ul li {
+    display: inline-block;
+    list-style: none;
+    border-radius: 0px!important; 
+    text-align: left;
+    
+    margin: 0 6px;
+    transition: all ease 500ms;
+    position: relative;
+}
+.login-socail-form ul li a:hover {
+    color: #FFFFFF!important;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    transition: all ease 500ms;
+    display: block;
+}
+.button-style:hover {
+    border-radius: 0px;
+    background: #aad6a9;
+    font-size: 13px;
+    text-transform: uppercase;
+    border-color: #aad6a9;
+}
+.modal-content{
+    border-radius: 0px;
+}
+i.fa.fa-instagram {
+    color: #000000;
+    font-size: 36px;
+}
+.modal-header {
+    min-height: 16.43px;
+    padding: 15px;
+    border-bottom: 1px solid #aad6a9;
+    background: #aad6a9;
+    color: #fff;
+}
+.modal-header .close {
+    margin-top: -18px;
+    color: #fff;
+    opacity: 1;
+}
+.input-sm {
+    height: 48px;
+    padding: 5px 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
