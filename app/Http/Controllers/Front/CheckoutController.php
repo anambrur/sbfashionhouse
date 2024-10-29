@@ -365,6 +365,7 @@ class CheckoutController extends Controller
 
     public function confirmOrder(Request $request)
     {
+        // dd($request->all());
         Validator::make($request->all(), [
             'name' => 'required',
             'mobile' => 'required',
@@ -391,7 +392,7 @@ class CheckoutController extends Controller
             $order->sub_total = $cart->subtotal();
             $order->discount = $request->discount ?? 0;
             $order->tax = $request->tax ?? 0;
-            $order->grand_total = $cart->total();
+            $order->grand_total = $request->grand_total;
             $order->payment_method_id = $request->payment_method_id ?? 0;
             $order->order_note = $request->order_note ?? '';
             $order->order_status = 1;

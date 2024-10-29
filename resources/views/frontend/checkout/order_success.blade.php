@@ -1,17 +1,17 @@
 @extends('frontend.master')
-@section("title", "Order Complete")
-@section("content")
+@section('title', 'Order Complete')
+@section('content')
     <?php
     //        Session::forget('step');
     //        Session::forget('shipping');
     //        Session::forget('billing');
     //        Session::forget('shipping_method');
-//    var_dump(Session::get('step'));
-//    var_dump(Session::get('shipping'));
-//    var_dump(Session::get('billing'));
-//    var_dump(Session::get('shipping_method'));
-//    var_dump(Session::get('coupon'));
-//    exit();
+    //    var_dump(Session::get('step'));
+    //    var_dump(Session::get('shipping'));
+    //    var_dump(Session::get('billing'));
+    //    var_dump(Session::get('shipping_method'));
+    //    var_dump(Session::get('coupon'));
+    //    exit();
     ?>
     <section class="common-section bg-black">
         <div class="container">

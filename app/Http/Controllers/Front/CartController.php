@@ -7,10 +7,12 @@ use Cart;
 use App\SM\SM;
 use App\Model\Common\Review;
 use Illuminate\Http\Request;
+use App\Model\Common\Payment;
 use App\Model\Common\Product;
 use App\Model\Common\Wishlist;
 use App\Http\Controllers\Controller;
 use App\Model\Common\ShippingMethod;
+use App\Model\Common\Payment_method;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Common\AttributeProduct;
 use App\Http\Controllers\Front\Session;
@@ -22,6 +24,7 @@ class CartController extends Controller
     {
         $data["cart"] = Cart::instance('cart')->content();
         $data['shippingMethods'] = ShippingMethod::Published()->get();
+        $data['paymentMethods'] = Payment_method::Published()->get();
         if (count($data["cart"]) > 0) {
             return view('frontend.products.cart', $data);
         } else {

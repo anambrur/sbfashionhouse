@@ -1,5 +1,13 @@
 @extends('frontend.master')
 @section('title', 'Cart')
+@push('style')
+    <style>
+        .invalid {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+@endpush
 @section('content')
     <!-- page wapper-->
     <div class="columns-container">
@@ -22,27 +30,37 @@
                             <div class="form-group">
                                 <label for="Inputtext1">Name</label>
                                 <input type="text" name="name" class="form-control" id="Inputtext1"
-                                    placeholder="Enter your name">
+                                    placeholder="Enter your name" required>
                             </div>
                             <div class="form-group">
                                 <label for="mobileNumber">Phone Number</label>
                                 <input type="text" name="mobile" class="form-control" id="mobileNumber"
-                                    placeholder="Enter your phone number">
+                                    placeholder="Enter your phone number" required>
                             </div>
                             <div class="form-group">
                                 <label for="Inputtext3">Address</label>
-                                <textarea class="form-control" name="address" rows="3"></textarea>
+                                <textarea class="form-control" name="address" rows="3" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="Inputtext3">Delivery Area</label>
-
-                                <select class="form-control" name="shipping_method">
-                                    <option value="" disabled>Please Select Delivery Area</option>
+                                <select class="form-control" name="shipping_method" id="shipping_method">
+                                    <option value="">Please Select Delivery Area</option>
                                     @foreach ($shippingMethods as $item)
-                                        <option value="{{ $item->id }}">{{ $item->title }} Charge: {{ $item->charge }}
+                                        <option value="{{ $item->id }}" data-charge="{{ $item->charge }}">
+                                            {{ $item->title }} Charge: {{ $item->charge }}Tk
                                         </option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group">
+
+                                <input type="checkbox" checked name="is_cash_on_delivery" id="is_cash_on_delivery">
+                                <label for="is_cash_on_delivery">Cash on Delivery</label>
+                                <span id="cash_on_delivery_charge"></span>
+
+                                <input type="checkbox" name="online_payment" id="online_payment">
+                                <label for="online_payment">Online Payment</label>
+                                <span id="cash_on_delivery_charge"></span>
                             </div>
 
 
@@ -146,8 +164,17 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3"><strong>Total</strong></td>
-                                            <td colspan="2">
+                                            <td colspan="3"><strong>Delivery Charge</strong></td>
+                                            <td colspan="2" id="delivery_charge">
+                                                <strong>TK 0.00</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <input type="hidden" id="initial_total_price"
+                                                value="{{ Cart::instance('cart')->total() }}">
+                                            <input type="text" value="" name="grand_total" id="grand_total">
+                                            <td colspan="5"><strong>Total</strong></td>
+                                            <td colspan="2" id="total_price">
                                                 <strong>{{ SM::product_price(Cart::instance('cart')->total()) }}</strong>
                                             </td>
                                         </tr>
@@ -155,20 +182,21 @@
                                     </tfoot>
                                 </table>
                             </div>
-                            {{-- <div class="checkout-buttons">
-                            <div class="cart_navigation">
-                                <a class="prev-btn" href="{{ url('/shop') }}">Continue shopping</a>
+                            <div class="checkout-buttons">
+                                <div class="cart_navigation">
+                                    <a class="prev-btn" href="{{ url('/shop') }}">Continue shopping</a>
+                                </div>
+                                {{-- <div class="cart_navigation">
+                                    @if (Auth::check())
+                                        <a class="next-btn" href="{{ url('/checkout') }}">Proceed to checkout</a>
+                                    @else
+                                        <a class="next-btn" data-toggle="modal" data-target="#loginModal"
+                                            href="#">Proceed
+                                            to
+                                            checkout</a>
+                                    @endif
+                                </div> --}}
                             </div>
-                            <div class="cart_navigation">
-                                @if (Auth::check())
-                                    <a class="next-btn" href="{{ url('/checkout') }}">Proceed to checkout</a>
-                                @else
-                                    <a class="next-btn" data-toggle="modal" data-target="#loginModal" href="#">Proceed
-                                        to
-                                        checkout</a>
-                                @endif
-                            </div>
-                        </div> --}}
                         </div>
                     </div>
                 </form>
@@ -208,9 +236,42 @@
     <script>
         $(document).ready(function() {
 
+            $("#phoneForms").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 3
+                    },
+                    mobile: {
+                        required: true,
+                        minlength: 11
+                    },
+                    address: {
+                        required: true,
+
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please enter your name",
+                        minlength: "Your name must be at least 3 characters long"
+                    },
+                    mobile: {
+                        required: "Please enter your mobile number",
+                        minlength: "Your email must be at least 11 characters long"
+                    },
+                    address: {
+                        required: "Please enter your address",
+                    }
+                },
+                submitHandler: function(form) {
+                    alert("Form submitted successfully!");
+                    form.submit();
+                }
+            });
+
             $('#ConfirmBtn').click(function() {
                 var mobile = $('#mobileNumber').val();
-                // console.log('ddddddd',mobile);
                 $.ajax({
                     url: '{{ route('check.authentication') }}',
                     type: 'POST',
@@ -249,6 +310,18 @@
                         }
                     }
                 });
+            });
+
+            $('#shipping_method').change(function() {
+                var selectedOption = $('#shipping_method option:selected');
+                var shippingCharge = parseFloat(selectedOption.data('charge')) || 0;
+                var initialTotal = parseFloat($('#initial_total_price').val()) || 0;
+                var newTotal = initialTotal + shippingCharge;
+
+                $('#delivery_charge').html('<strong>TK ' + shippingCharge.toFixed(2) + '</strong>');
+                $('#total_price').html('<strong>TK ' + newTotal.toFixed(2) + '</strong>');
+
+                $('#grand_total').val(newTotal);
             });
         });
     </script>

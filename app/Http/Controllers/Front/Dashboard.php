@@ -18,13 +18,15 @@ use Illuminate\Support\Facades\Auth;
 use Response;
 use Cart;
 
-class Dashboard extends Controller {
+class Dashboard extends Controller
+{
 
     /**
      * Show customer dasshboard
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index() {
+    public function index()
+    {
         $data['activeMenu'] = 'dashboard';
         $data["userInfo"] = \Auth::user();
 
@@ -38,33 +40,35 @@ class Dashboard extends Controller {
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function orders($status = null) {
+    public function orders($status = null)
+    {
         $data['activeMenu'] = 'orders';
         $data["userInfo"] = \Auth::user();
         $order_posts_per_page = SM::smGetThemeOption("order_posts_per_page", config('constant.smPagination'));
         $data['status'] = $status;
         if ($status != null) {
             $data["orders"] = Order::where("user_id", \Auth::user()->id)
-                    ->where("order_status", $status)
-                    ->orderBy("id", 'desc')
-                    ->paginate($order_posts_per_page);
+                ->where("order_status", $status)
+                ->orderBy("id", 'desc')
+                ->paginate($order_posts_per_page);
         } else {
             $data["orders"] = Order::where("user_id", \Auth::user()->id)
-                    ->orderBy("id", 'desc')
-                    ->paginate($order_posts_per_page);
+                ->orderBy("id", 'desc')
+                ->paginate($order_posts_per_page);
         }
 
         return view("customer/orders", $data);
     }
 
-    public function wishlist() {
+    public function wishlist()
+    {
         $data['activeMenu'] = 'wishlist';
         $data["userInfo"] = \Auth::user();
         $order_posts_per_page = SM::smGetThemeOption("order_posts_per_page", config('constant.smPagination'));
 
         $data["wishlists"] = Wishlist::where("user_id", Auth::id())
-                ->orderBy("id", 'desc')
-                ->paginate($order_posts_per_page);
+            ->orderBy("id", 'desc')
+            ->paginate($order_posts_per_page);
 
         return view("customer/wishlist", $data);
     }
@@ -88,12 +92,17 @@ class Dashboard extends Controller {
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      */
-    public function detailOrders($id) {
+    public function detailOrders($id)
+    {
         Cart::instance('cart')->destroy();
-        $data["order"] = Order::with( 'payment', 'user', 'detail')
-                ->where("user_id", \Auth::user()->id)
-                ->find($id);
-        if (count($data["order"]) > 0) {
+        $data["order"] = Order::with('payment', 'user', 'detail')
+            ->where("user_id", \Auth::user()->id)
+            ->find($id);
+
+
+
+        // dd($data["order"]);
+        if ($data["order"] != null) {
             $data["payment"] = $data["order"]->payment;
 
             return view("customer/order_detail", $data);
@@ -107,17 +116,18 @@ class Dashboard extends Controller {
      *
      * @param $id
      */
-    public function downloadOrders($id) {
+    public function downloadOrders($id)
+    {
         $data["order"] = Order::with('payment', 'user', 'detail')
-                ->where("user_id", \Auth::user()->id)
-                ->find($id);
+            ->where("user_id", \Auth::user()->id)
+            ->find($id);
         if (count($data["order"]) > 0) {
             $data["payment"] = Payment::find($data["order"]->payment_id);
 
             $view = view("pdf/invoice", $data);
 
             return PDF::loadHTML($view)
-                            ->download('kz_international_invoice_' . SM::orderNumberFormat($data["order"]) . '.pdf');
+                ->download('kz_international_invoice_' . SM::orderNumberFormat($data["order"]) . '.pdf');
         } else {
             return abort(404);
         }
@@ -127,7 +137,8 @@ class Dashboard extends Controller {
      * Edit customer profile
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function editProfile() {
+    public function editProfile()
+    {
         $data['activeMenu'] = 'edit-profile';
         $data["userInfo"] = \Auth::user();
 
@@ -141,7 +152,8 @@ class Dashboard extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function saveProfile(Request $data) {
+    public function saveProfile(Request $data)
+    {
         $this->validate($data, [
             'firstname' => 'required',
             'lastname' => 'required',
@@ -176,7 +188,8 @@ class Dashboard extends Controller {
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function saveProfilePicture(Request $data) {
+    public function saveProfilePicture(Request $data)
+    {
         $maxPost = config('constant.smPostMaxInMb') * 1024;
         $img = SM::sm_image_upload('profile_picture', "required|max:$maxPost|mimes:png,gif,jpeg");
         if (is_array($img) && isset($img['insert_id'])) {
@@ -197,7 +210,8 @@ class Dashboard extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updatePassword(Request $request) {
+    public function updatePassword(Request $request)
+    {
         $this->validate($request, [
             'password' => 'required|min:6|confirmed',
             'current_password' => [new SmPasswordMatch()]
@@ -214,14 +228,15 @@ class Dashboard extends Controller {
      * Show all downloadable file
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function downloads() {
+    public function downloads()
+    {
         $data['activeMenu'] = 'downloads';
         $data["userInfo"] = \Auth::user();
         $order_posts_per_page = SM::smGetThemeOption("order_posts_per_page", config('constant.smPagination'));
         $data["medias"] = Media::leftJoin('media_permissions', 'media_permissions.media_id', '=', "media.id")
-                ->where("media_permissions.user_id", \Auth::user()->id)
-                ->orderBy('media.id', 'desc')
-                ->paginate($order_posts_per_page);
+            ->where("media_permissions.user_id", \Auth::user()->id)
+            ->orderBy('media.id', 'desc')
+            ->paginate($order_posts_per_page);
 
         return view("customer/downloads", $data);
     }
@@ -233,13 +248,14 @@ class Dashboard extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function mediaDownload($id) {
+    public function mediaDownload($id)
+    {
         $media = Media::find($id);
         if (count($media) > 0) {
             $path = config('constant.smUploadsDir');
             $fileWithDir = storage_path("app/" .
-                    ($media->is_private == 1 ? "private" : "public") .
-                    "/" . $path . $media->slug);
+                ($media->is_private == 1 ? "private" : "public") .
+                "/" . $path . $media->slug);
             if (file_exists($fileWithDir)) {
                 if ($media->is_private == 0) {
                     return Response::download($fileWithDir);
@@ -251,8 +267,4 @@ class Dashboard extends Controller {
             return back()->with('w_message', 'No file Found!');
         }
     }
-
-
-  
-
 }

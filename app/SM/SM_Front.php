@@ -43,7 +43,7 @@ trait SM_Front
 {
 
     public static $settings_autoload = array();
-    public static $countries = Array(
+    public static $countries = array(
         "Afghanistan",
         "Albania",
         "Algeria",
@@ -1246,37 +1246,37 @@ trait SM_Front
                 } else {
                     $selected = '';
                 }
-                if(count($s_category->products)>0){
-                $html .= '<li>
+                if (count($s_category->products) > 0) {
+                    $html .= '<li>
                             <input ' . $selected . ' type="checkbox" id="c1_' . $s_category->id . '" value="' . $s_category->id . '"
                                    class="common_selector category"/>
                             <label for="c1_' . $s_category->id . '">
                                 <span class="button"></span>
                                 ' . $s_category->title . '<span class="count">( ' . count($s_category->products) . ' )</span>
                             </label>';
-                $category_data2 = Category::where('parent_id', $s_category->id)->get();
-                if ($category_data2) {
-                    $html .= '<ul class="sub-sub-cat ">';
-                    foreach ($category_data2 as $s_s_category) {
-                        if ($segment == $s_s_category->slug) {
-                            $selected = 'checked';
-                        } else {
-                            $selected = '';
-                        }
-                        if(count($s_s_category->products)>0){
-                        $html .= '<li>
+                    $category_data2 = Category::where('parent_id', $s_category->id)->get();
+                    if ($category_data2) {
+                        $html .= '<ul class="sub-sub-cat ">';
+                        foreach ($category_data2 as $s_s_category) {
+                            if ($segment == $s_s_category->slug) {
+                                $selected = 'checked';
+                            } else {
+                                $selected = '';
+                            }
+                            if (count($s_s_category->products) > 0) {
+                                $html .= '<li>
                             <input ' . $selected . ' type="checkbox" id="c1_' . $s_s_category->id . '" value="' . $s_s_category->id . '"
                                    class="common_selector category"/>
                             <label for="c1_' . $s_s_category->id . '">
                                 <span class="button"></span>
                                 ' . $s_s_category->title . '<span class="count">( ' . count($s_s_category->products) . ' )</span>
                             </label>';
-                        $html .= '</li>';
+                                $html .= '</li>';
+                            }
                         }
+                        $html .= '</ul>';
                     }
-                    $html .= '</ul>';
-                }
-                $html .= '</li>';
+                    $html .= '</li>';
                 }
             }
             $html .= '</ul>';
@@ -1495,20 +1495,20 @@ trait SM_Front
 
     public static function sm_category_attr_check($cat_ids, $cats_attr)
     {
-//      echo 'chk=' . implode(',', $cats_attr);
-//      echo ' ids=' . implode(',', $cat_ids);
+        //      echo 'chk=' . implode(',', $cats_attr);
+        //      echo ' ids=' . implode(',', $cat_ids);
         $fl = 1;
         foreach ($cat_ids as $id) {
             if (in_array($id, $cats_attr)) {
-//            echo " tr=$id   ";
+                //            echo " tr=$id   ";
                 return true;
             } else {
-//            echo " fl=$id   ";
+                //            echo " fl=$id   ";
                 $fl *= 0;
             }
         }
         if ($fl == 0) {
-//         echo " total fl";
+            //         echo " total fl";
             return false;
         }
     }
@@ -1544,7 +1544,7 @@ trait SM_Front
                     return self::$settings_autoload[$option_name];
                 } else {
                     $setting = Setting::where('option_name', $option_name)->first();
-//                    if (count($setting) > 0) {
+                    //                    if (count($setting) > 0) {
                     if (!empty($setting)) {
                         self::$settings_autoload[$setting->option_name] = $setting->option_value;
 
@@ -1866,7 +1866,7 @@ trait SM_Front
         $url = \URL::previous();
         if (strpos($url, url("")) !== false) {
             Session::put("smurl", $url);
-//			Session::save();
+            //			Session::save();
         }
     }
 
@@ -2027,7 +2027,7 @@ trait SM_Front
         $validator = Validator::make(array($f_name => $file), $rules);
         if ($validator->passes()) {
             $path = config('constant.smUploadsDir');
-//			$path         = $isPrivate ? $smUploadsDir : "public/" . $smUploadsDir;
+            //			$path         = $isPrivate ? $smUploadsDir : "public/" . $smUploadsDir;
 
             $fileOriginalName = $file->getClientOriginalName();
             $title = pathinfo($fileOriginalName, PATHINFO_FILENAME);
@@ -2061,7 +2061,7 @@ trait SM_Front
                 }
             }
 
-//			$upload_success   = $file->move( $path, $filename );
+            //			$upload_success   = $file->move( $path, $filename );
 
             $data['insert_id'] = self::sm_insert_media_info($isPrivate, $filename, $title);
             $img = self::sm_get_galary_src_data_img($filename, $isPrivate);
@@ -2254,11 +2254,11 @@ trait SM_Front
     public static function sm_get_the_src($id_or_slug, $width = '', $height = '')
     {
         if (!is_numeric($id_or_slug) && preg_match("/^./", $id_or_slug)) {
-//			Debugbar::info( "sm_get_the_src if " . $id_or_slug );
+            //			Debugbar::info( "sm_get_the_src if " . $id_or_slug );
 
             return self::sm_get_the_src_by_slug($id_or_slug, $width, $height);
         } elseif (is_numeric($id_or_slug)) {
-//			Debugbar::info( "sm_get_the_src else " . $id_or_slug );
+            //			Debugbar::info( "sm_get_the_src else " . $id_or_slug );
             $id_or_slug = (int)trim($id_or_slug);
 
             $media = Media_model::find($id_or_slug);
@@ -2315,7 +2315,7 @@ trait SM_Front
             $dir = $path . $slug;
             $img = Storage::url($dir);
 
-//			Debugbar::info( "sm_get_the_src_by_slug if " . $slug . " src " . $img );
+            //			Debugbar::info( "sm_get_the_src_by_slug if " . $slug . " src " . $img );
 
             return self::sm_file($img);
         } else {
@@ -2324,22 +2324,22 @@ trait SM_Front
             if (!file_exists($filename)) {
                 $filename = storage_path("app/public/" . $path . $name . '_' . $width . 'x' . $height . '.' . $extension);
             }
-//			Debugbar::info( "sm_get_the_src_by_slug else " . $slug . " src " . $path . " " . $filename );
+            //			Debugbar::info( "sm_get_the_src_by_slug else " . $slug . " src " . $path . " " . $filename );
             if ($imageinfo = @getimagesize($filename)) {
-//				Debugbar::info( "sohag sm_get_the_src_by_slug else getimagesize " . $filename );
+                //				Debugbar::info( "sohag sm_get_the_src_by_slug else getimagesize " . $filename );
 
                 if ($imageinfo[0] >= $width && $imageinfo[1] >= $height) {
                     $dir = $path . $name . '_' . $width . 'x' . $height . '.' . $extension;
                     $img = Storage::url($dir);
 
-//					Debugbar::info( "sm_get_the_src_by_slug else " . $slug . " src " . $img );
+                    //					Debugbar::info( "sm_get_the_src_by_slug else " . $slug . " src " . $img );
 
                     return self::sm_file($img, $width, $height);
                 } else {
                     $dir = $path . $slug;
                     $img = Storage::url($dir);
 
-//					Debugbar::info( "sm_get_the_src_by_slug if " . $slug . " src " . $img );
+                    //					Debugbar::info( "sm_get_the_src_by_slug if " . $slug . " src " . $img );
 
                     return self::sm_file($img);
                 }
@@ -2435,7 +2435,7 @@ trait SM_Front
                     if ($isPrivate) {
                         $img = storage_path(
                             "app/public/" . config('constant.smUploadsDir') .
-                            $name . '_' . $width . 'x' . $height . '.' . $extension
+                                $name . '_' . $width . 'x' . $height . '.' . $extension
                         );
                         if (@getimagesize($img)) {
                             unlink($img);
@@ -2463,7 +2463,7 @@ trait SM_Front
             if ($isPrivate) {
                 $img['src'] = self::sm_get_the_src($filename, 112, 112);
                 $img['data_img'] = self::sm_get_the_src($filename, 165, 165);
-//				Debugbar::info( "isPrivate " . $isPrivate . " " . $filename . " " . $file_chk . " " . json_encode( $img ) );
+                //				Debugbar::info( "isPrivate " . $isPrivate . " " . $filename . " " . $file_chk . " " . json_encode( $img ) );
             } else {
                 $img['src'] = self::sm_get_the_src($filename, 112, 112);
                 $img['data_img'] = self::sm_get_the_src($filename, 600, 400);
@@ -2517,7 +2517,7 @@ trait SM_Front
 
         return $img;
     }
-public  static function get_payment_method_by_id($method_id)
+    public  static function get_payment_method_by_id($method_id)
     {
         $payment_methods = DB::table('payment_methods')->find($method_id);
         return $payment_methods;
@@ -2609,7 +2609,7 @@ public  static function get_payment_method_by_id($method_id)
         $date = date('Y-m-d');
         if (!(Session::has('views') && session('views') == $date) || !Session::has('views')) {
             $date = date('Y-m-d');
-//      $date = '2016-06-25';
+            //      $date = '2016-06-25';
             $visitor = Visitor::where('date', $date)->first();
             if ($visitor) {
                 $visitor->increment('views');
@@ -2620,7 +2620,7 @@ public  static function get_payment_method_by_id($method_id)
                 $visitor->save();
             }
             Session::put("views", $date);
-//			Session::save();
+            //			Session::save();
         }
     }
 
@@ -2693,9 +2693,10 @@ public  static function get_payment_method_by_id($method_id)
         }
 
         if (($number >= 0 && (int)$number < 0) || (int)$number < 0 - PHP_INT_MAX) {
-// overflow
+            // overflow
             trigger_error(
-                'sm_convert_number_to_words only accepts numbers between -' . PHP_INT_MAX . ' and ' . PHP_INT_MAX, E_USER_WARNING
+                'sm_convert_number_to_words only accepts numbers between -' . PHP_INT_MAX . ' and ' . PHP_INT_MAX,
+                E_USER_WARNING
             );
 
             return false;
@@ -2916,22 +2917,22 @@ public  static function get_payment_method_by_id($method_id)
             return SM::getCommentList($blogId, $typeStr, $parentId, 0);
         }, ['blog_comments_' . $blogId]);
         if (count($commnets) > 0) {
-            ?>
+?>
             <ul class="child-comment comment-placeholder">
                 <?php
                 $currentLoadedCommentCount = count($commnets);
                 $parentLastCommentId = 0;
                 foreach ($commnets as $comment) {
-                    ?>
+                ?>
                     <li>
                         <div class="single-comment">
                             <img src="<?php echo SM::sm_get_the_src($comment->user->image, 112, 112); ?>"
-                                 alt="<?php echo $comment->user->username; ?>">
+                                alt="<?php echo $comment->user->username; ?>">
                             <h3><a href="#"><?php echo $comment->user->username; ?></a></h3>
                             <div class="con-date"><?php echo date("M d, Y", strtotime($comment->created_at)); ?></div>
                             <?php if ($label < 2): ?>
                                 <a href="javascript:void(0)" class="replay"
-                                   data-comment="<?php echo $comment->id; ?>">
+                                    data-comment="<?php echo $comment->id; ?>">
                                     <i class="fa fa-reply"></i>replay</a>
                             <?php endif; ?>
                             <p><?php echo stripslashes($comment->comments); ?></p>
@@ -2940,25 +2941,24 @@ public  static function get_payment_method_by_id($method_id)
                         self::getChildrenComment($blogId, $type, $comment->id, $label + 1);
                         ?>
                     </li>
-                    <?php
+                <?php
                     $parentLastCommentId = $comment->id;
                 }
                 ?>
             </ul>
             <?php
             if ($commnetsCount > $currentLoadedCommentCount) {
-                ?>
+            ?>
                 <div class="ab-pagination-list text-center">
                     <a href="javascript:void(0)"
-                       class="loadMoreComments"
-                       id="comments<?= $blogId . "_" . $type . "_" . $parentId; ?>"
-                       data-url="<?= url("/comments/$blogId/$type/$parentId") ?>"
-                       data-last="<?= $parentLastCommentId; ?>"
-                       data-loaded="<?= $currentLoadedCommentCount; ?>"
-                       data-count="<?= $commnetsCount; ?>"
-                    ><i class="fa fa-spinner"></i> Load More Replies</a>
+                        class="loadMoreComments"
+                        id="comments<?= $blogId . "_" . $type . "_" . $parentId; ?>"
+                        data-url="<?= url("/comments/$blogId/$type/$parentId") ?>"
+                        data-last="<?= $parentLastCommentId; ?>"
+                        data-loaded="<?= $currentLoadedCommentCount; ?>"
+                        data-count="<?= $commnetsCount; ?>"><i class="fa fa-spinner"></i> Load More Replies</a>
                 </div>
-                <?php
+            <?php
             }
         }
     }
@@ -3029,7 +3029,7 @@ public  static function get_payment_method_by_id($method_id)
         }
     }
 
-//    -----------------Product section-----------------
+    //    -----------------Product section-----------------
     public static function getMainCategories($isWithHaveNoProduct = 1)
     {
         if ($isWithHaveNoProduct == 1) {
@@ -3038,8 +3038,8 @@ public  static function get_payment_method_by_id($method_id)
             });
         } else {
             return SM::getCache('main_categories_have_posts', function () {
-//                return Category::where("total_posts", ">", 0)
-//                    ->get();
+                //                return Category::where("total_posts", ">", 0)
+                //                    ->get();
                 return Category::where('parent_id', 0)->get();
             });
         }
@@ -3198,7 +3198,7 @@ public  static function get_payment_method_by_id($method_id)
 
         return round($get_discount);
     }
-    
+
     public static function productRegularPrice($product_id = null)
     {
         $product = Product::find($product_id);
@@ -3233,7 +3233,7 @@ public  static function get_payment_method_by_id($method_id)
             ->select('products.*')
             ->orderBy('products.regular_price', 'asc')
             ->groupBy('products.id')
-//            ->skip(1)
+            //            ->skip(1)
             ->take(7)
             ->get();
 
@@ -3249,7 +3249,7 @@ public  static function get_payment_method_by_id($method_id)
             ->first();
         return $attribute;
     }
- public static function getAttributeByProductId($product_id = null)
+    public static function getAttributeByProductId($product_id = null)
     {
         $attribute = \App\Model\Common\AttributeProduct::where('product_id', $product_id)
             ->orderBy('id', 'ASC')
@@ -3334,7 +3334,7 @@ public  static function get_payment_method_by_id($method_id)
         if ($isWithHaveNoPtoduct == 0) {
             return SM::getCache('tags_have_products', function () {
                 return Tag::all();
-//                return Tag::where("total_products", ">", 0)->get();
+                //                return Tag::where("total_products", ">", 0)->get();
             });
         } else {
             return SM::getCache('tags_have_not_product', function () {
@@ -3409,7 +3409,7 @@ public  static function get_payment_method_by_id($method_id)
         return $get_colors;
     }
 
-//    -----------------End product section------------------------
+    //    -----------------End product section------------------------
 
     public
     static function getChildrenTableComment($blog_id, $comment_id, $label = 0)
@@ -3426,46 +3426,46 @@ public  static function get_payment_method_by_id($method_id)
         if ($comments) {
             $sl = 1;
             foreach ($comments as $comment) {
-                ?>
+            ?>
                 <tr id="tr_<?php echo $label . "_" . $comment->id; ?>">
                     <td colspan="2"></td>
                     <td <?php if ($label > 0) : ?> style="padding-left: <?php echo $label * 50 ?>px" <?php endif; ?>><?php
-                        if (strlen($comment->comments) > 500) {
-                            echo substr(strip_tags($comment->comments), 0, 500) . ".... ";
-                        } else {
-                            echo $comment->comments;
-                        }
-                        ?>
+                                                                                                                        if (strlen($comment->comments) > 500) {
+                                                                                                                            echo substr(strip_tags($comment->comments), 0, 500) . ".... ";
+                                                                                                                        } else {
+                                                                                                                            echo $comment->comments;
+                                                                                                                        }
+                                                                                                                        ?>
                     </td>
                     <td><?php echo isset($comment->user->username) ? $comment->user->username : ""; ?></td>
                     <td>
                         <img class="img-blog"
-                             src="<?php echo SM::sm_get_the_src(isset($comment->user->image) ? $comment->user->image : "", 80, 80); ?>"
-                             width="80px"
-                             alt="author"/>
+                            src="<?php echo SM::sm_get_the_src(isset($comment->user->image) ? $comment->user->image : "", 80, 80); ?>"
+                            width="80px"
+                            alt="author" />
                     </td>
                     <?php if ($comment_status_update != 0): ?>
                         <td class="text-center">
                             <select class="form-control change_status"
-                                    route="<?php echo config('constant.smAdminSlug'); ?>/blogs/comment_status_update"
-                                    post_id="<?php echo $comment->id; ?>">
+                                route="<?php echo config('constant.smAdminSlug'); ?>/blogs/comment_status_update"
+                                post_id="<?php echo $comment->id; ?>">
                                 <option value="1" <?php
-                                if ($comment->status == 1) {
-                                    echo 'Selected="Selected"';
-                                }
-                                ?>>Published
+                                                    if ($comment->status == 1) {
+                                                        echo 'Selected="Selected"';
+                                                    }
+                                                    ?>>Published
                                 </option>
                                 <option value="2" <?php
-                                if ($comment->status == 2) {
-                                    echo 'Selected="Selected"';
-                                }
-                                ?>>Pending
+                                                    if ($comment->status == 2) {
+                                                        echo 'Selected="Selected"';
+                                                    }
+                                                    ?>>Pending
                                 </option>
                                 <option value="3" <?php
-                                if ($comment->status == 3) {
-                                    echo 'Selected="Selected"';
-                                }
-                                ?>>Canceled
+                                                    if ($comment->status == 3) {
+                                                        echo 'Selected="Selected"';
+                                                    }
+                                                    ?>>Canceled
                                 </option>
                             </select>
                         </td>
@@ -3473,27 +3473,27 @@ public  static function get_payment_method_by_id($method_id)
                     <?php if ($per != 0): ?>
                         <td class="text-center">
                             <a href="<?php echo url(config('constant.smAdminSlug') . '/blogs/reply_comment'); ?>/<?php echo $comment->id; ?>"
-                               title="Edit" class="btn btn-xs btn-default" id="">
+                                title="Edit" class="btn btn-xs btn-default" id="">
                                 <i class="fa fa-reply"></i>
                             </a>
                             <?php if ($edit_comment != 0): ?>
                                 <a href="<?php echo url(config('constant.smAdminSlug') . '/blogs/edit_comment'); ?>/<?php echo $comment->id; ?>"
-                                   title="Edit" class="btn btn-xs btn-default" id="">
+                                    title="Edit" class="btn btn-xs btn-default" id="">
                                     <i class="fa fa-pencil"></i>
                                 </a>
                             <?php endif; ?>
                             <?php if ($delete_comment != 0): ?>
                                 <a href="<?php echo url(config('constant.smAdminSlug') . '/blogs/delete_comment'); ?>/<?php echo $comment->id; ?>"
-                                   title="Delete" class="btn btn-xs btn-default delete_data_row"
-                                   delete_message="Are you sure to delete this blog comment?"
-                                   delete_row="tr_<?php echo $label . "_" . $comment->id; ?>">
+                                    title="Delete" class="btn btn-xs btn-default delete_data_row"
+                                    delete_message="Are you sure to delete this blog comment?"
+                                    delete_row="tr_<?php echo $label . "_" . $comment->id; ?>">
                                     <i class="fa fa-times"></i>
                                 </a>
                             <?php endif; ?>
                         </td>
                     <?php endif; ?>
                 </tr>
-                <?php
+<?php
                 static::getChildrenTableComment($comment->commentable_id, $comment->id, $label);
             }
         }
@@ -3716,62 +3716,62 @@ public  static function get_payment_method_by_id($method_id)
         return $nav;
     }
 
-//    public static function sm_get_menu($menu) {
-//        $nav = "";
-//        $nav_wrapper = (isset($menu['nav_wrapper'])) ? $menu['nav_wrapper'] : 'ul';
-//        $start_class = (isset($menu['start_class'])) ? $menu['start_class'] : 'menu-links pull-right';
-//        $link_wrapper = (isset($menu['link_wrapper'])) ? $menu['link_wrapper'] : 'li';
-//        $home_class = (isset($menu['home_class'])) ? $menu['home_class'] : '';
-//        $has_dropdown_wrapper_class = (isset($menu['has_dropdown_wrapper_class'])) ? $menu['has_dropdown_wrapper_class'] : 'has-menu-items';
-//        $dropdown_class = (isset($menu['dropdown_class'])) ? $menu['dropdown_class'] : 'drop-down-multilevel';
-//        $show = (isset($menu['$show']) && $menu['$show'] != '') ? $menu['$show'] : true;
-//        $main_menu = self::sm_unserialize(self::get_setting_value('main_menu'));
-//
-//        $nav .= "<$nav_wrapper class='$start_class'>";
-//        $nav .= "<$link_wrapper class='index $home_class'>
-//                     <a href='" . url('/') . "'><i class='fa fa-home'></i> Home</a>
-//                  </$link_wrapper>";
-//        if (isset($main_menu['menu_item']) && count($main_menu['menu_item']) > 0) {
-//            $main_menu = $main_menu['menu_item'];
-//            foreach ($main_menu as $item) {
-//                if (isset($item['p_id']) && $item['p_id'] == 0) {
-//                    $n_class = pathinfo($item['link'], PATHINFO_FILENAME);
-//                    $child = self::sm_get_children_nav($main_menu, $item['id'], $nav_wrapper, $link_wrapper, $dropdown_class);
-//                    $dp_class = ($child != '') ? $dropdown_class : "";
-//                    $cls = isset($item['cls']) ? str_replace(' ', '.', $item['cls']) : '';
-//                    $link_cls = isset($item['link_cls']) ? str_replace(' ', '.', $item['link_cls']) : '';
-//                    $icon_cls = isset($item['icon_cls']) ? str_replace(' ', '.', $item['icon_cls']) : '';
-//                    $hasDropDownWrapperClass = ($child != '') ? $has_dropdown_wrapper_class : "";
-//                    $nav .= "<$link_wrapper class='$n_class $cls $hasDropDownWrapperClass'>\n";
-//                    $nav .= "<a href='" . $item['link'] . "' class='$link_cls'>\n";
-//                    if ($icon_cls != '') {
-//                        $nav .= "<i class='fa fa-plus-square'></i>\n";
-//                    }
-//                    $nav .= ucwords(strtolower($item['title'])) . "\n";
-//                    $nav .= "</a>\n";
-//                    if ($child != '') {
-//                        $nav .= "\n\n\n<$nav_wrapper class='$dp_class'>";
-//                        $nav .= $child;
-//                        $nav .= "</$nav_wrapper>\n\n\n";
-//                    }
-//                    $nav .= "</$link_wrapper>\n";
-//                }
-//            }
-//        } else {
-//            if (SM::check_this_method_access('appearance', 'menus')):
-//                $nav .= '<a href="' . url(config("constant.smAdminSlug") . "/appearance/menus") . '">You don\'t set menu yet, Create your menu.</a>';
-//            else:
-//                $nav .= '<a href="' . url("#") . '">No menu item avilable.</a>';
-//            endif;
-//        }
-//
-//        $nav .= "</$nav_wrapper>";
-//        if ($show) {
-//            echo $nav;
-//        } else {
-//            return $nav;
-//        }
-//    }
+    //    public static function sm_get_menu($menu) {
+    //        $nav = "";
+    //        $nav_wrapper = (isset($menu['nav_wrapper'])) ? $menu['nav_wrapper'] : 'ul';
+    //        $start_class = (isset($menu['start_class'])) ? $menu['start_class'] : 'menu-links pull-right';
+    //        $link_wrapper = (isset($menu['link_wrapper'])) ? $menu['link_wrapper'] : 'li';
+    //        $home_class = (isset($menu['home_class'])) ? $menu['home_class'] : '';
+    //        $has_dropdown_wrapper_class = (isset($menu['has_dropdown_wrapper_class'])) ? $menu['has_dropdown_wrapper_class'] : 'has-menu-items';
+    //        $dropdown_class = (isset($menu['dropdown_class'])) ? $menu['dropdown_class'] : 'drop-down-multilevel';
+    //        $show = (isset($menu['$show']) && $menu['$show'] != '') ? $menu['$show'] : true;
+    //        $main_menu = self::sm_unserialize(self::get_setting_value('main_menu'));
+    //
+    //        $nav .= "<$nav_wrapper class='$start_class'>";
+    //        $nav .= "<$link_wrapper class='index $home_class'>
+    //                     <a href='" . url('/') . "'><i class='fa fa-home'></i> Home</a>
+    //                  </$link_wrapper>";
+    //        if (isset($main_menu['menu_item']) && count($main_menu['menu_item']) > 0) {
+    //            $main_menu = $main_menu['menu_item'];
+    //            foreach ($main_menu as $item) {
+    //                if (isset($item['p_id']) && $item['p_id'] == 0) {
+    //                    $n_class = pathinfo($item['link'], PATHINFO_FILENAME);
+    //                    $child = self::sm_get_children_nav($main_menu, $item['id'], $nav_wrapper, $link_wrapper, $dropdown_class);
+    //                    $dp_class = ($child != '') ? $dropdown_class : "";
+    //                    $cls = isset($item['cls']) ? str_replace(' ', '.', $item['cls']) : '';
+    //                    $link_cls = isset($item['link_cls']) ? str_replace(' ', '.', $item['link_cls']) : '';
+    //                    $icon_cls = isset($item['icon_cls']) ? str_replace(' ', '.', $item['icon_cls']) : '';
+    //                    $hasDropDownWrapperClass = ($child != '') ? $has_dropdown_wrapper_class : "";
+    //                    $nav .= "<$link_wrapper class='$n_class $cls $hasDropDownWrapperClass'>\n";
+    //                    $nav .= "<a href='" . $item['link'] . "' class='$link_cls'>\n";
+    //                    if ($icon_cls != '') {
+    //                        $nav .= "<i class='fa fa-plus-square'></i>\n";
+    //                    }
+    //                    $nav .= ucwords(strtolower($item['title'])) . "\n";
+    //                    $nav .= "</a>\n";
+    //                    if ($child != '') {
+    //                        $nav .= "\n\n\n<$nav_wrapper class='$dp_class'>";
+    //                        $nav .= $child;
+    //                        $nav .= "</$nav_wrapper>\n\n\n";
+    //                    }
+    //                    $nav .= "</$link_wrapper>\n";
+    //                }
+    //            }
+    //        } else {
+    //            if (SM::check_this_method_access('appearance', 'menus')):
+    //                $nav .= '<a href="' . url(config("constant.smAdminSlug") . "/appearance/menus") . '">You don\'t set menu yet, Create your menu.</a>';
+    //            else:
+    //                $nav .= '<a href="' . url("#") . '">No menu item avilable.</a>';
+    //            endif;
+    //        }
+    //
+    //        $nav .= "</$nav_wrapper>";
+    //        if ($show) {
+    //            echo $nav;
+    //        } else {
+    //            return $nav;
+    //        }
+    //    }
     public static function sm_get_children_nav_page($main_menu, $id, $nav_wrapper, $link_wrapper, $dropdown_class)
     {
 
@@ -3826,12 +3826,12 @@ public  static function get_payment_method_by_id($method_id)
             $orderNumber .= self::getCountryCode($order->user->country);
         }
         $orderNumber .= date('ymd', strtotime($order->created_at));
-//        if (isset($order->package) && isset($order->package->title)) {
-//            $titles = explode(' ', $order->package->title);
-//            foreach ($titles as $t) {
-//                $orderNumber .= substr($t, 0, 1);
-//            }
-//        }
+        //        if (isset($order->package) && isset($order->package->title)) {
+        //            $titles = explode(' ', $order->package->title);
+        //            foreach ($titles as $t) {
+        //                $orderNumber .= substr($t, 0, 1);
+        //            }
+        //        }
         $orderNumber .= $order->id;
 
         return strtoupper($orderNumber);
@@ -3989,5 +3989,4 @@ public  static function get_payment_method_by_id($method_id)
 
         return $title;
     }
-
 }

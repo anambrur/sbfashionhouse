@@ -4,6 +4,7 @@ $min_price = (int) \App\Model\Common\Product::min('regular_price');
 ?>
 <!-- Script-->
 <script type="text/javascript" src="{{ asset('frontend/lib/jquery/jquery-1.11.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('frontend/lib/jquery/jquery_validate.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('frontend/lib/owl.carousel/owl.carousel.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('frontend/lib/bootstrap/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('frontend/lib/select2/js/select2.min.js') }}"></script>
